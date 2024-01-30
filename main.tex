@@ -9,9 +9,20 @@ top=20mm,
 }
 \setlength\parindent{0pt} % get rid of the stupid indent
 
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{xcolor}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[r]{\footnotesize{Thomas Boxall \\ \texttt{thomas@thomasboxall.net}}}
+\fancyfoot[c]{\thepage}
+\fancyhead[r]{}
+\renewcommand{\footrulewidth}{0.4pt}
+\addtolength{\topmargin}{-1.59999pt}
+\setlength{\headheight}{13.59999pt}
 
 \title{Beginners Guide to GitHub}
 \date{\today\ (v1)}
@@ -19,21 +30,25 @@ top=20mm,
 
 \begin{document}
 \maketitle
+
+\section{Introduction}
+
 This document exists to provide guidance on how to use GitHub for a collaborative software engineering project (SETaP Module at UoP). It is by no means a fully comprehensive, all singing, all dancing git \& GitHub tutorial, however it should cover the basics.\\
 
 The document assumes a number of things:
 \begin{enumerate}
-    \item You have \href{https://git-scm.com/downloads}{Git} installed on your target device
-    \item You have already configured your credentials
-    \item You are aware of what Git is, the way it works and how you can interact with it
+    \item You have \href{https://git-scm.com/downloads}{\textcolor{blue}{Git}} installed on your target device;
+    \item You have already configured your credentials on your device;
+    \item You are aware of what Git is, the way it works and how you can interact with it; and
+    \item You have a \href{https://github.com}{\textcolor{blue}{GitHub}} account and have the correct access to the repository you are aiming to use.
 \end{enumerate}
 
 This guide will examine the methods of interacting with Git through the Command Line (this will be \textit{Powershell} on Windows, or a Terminal on a Unix-derived operating system). Other methods exist, but I use the CLI so that's what I'm gonna write my docs on!\\
 
-The guide will look at a fictional repository called \verb|example-repo| under my GitHub account (\verb|/ThomasBoxall|)
+The guide will look at a demonstrative repository called \verb|example-repo| under my GitHub account (\verb|/ThomasBoxall|)
 
-\section{Part I: Cloning The Repository}
-The first stage to using git is to clone a repository to your local machine. First, navigate to the GitHub page of your repository and under the \verb|Code| menu, copy the repository's URL.
+\section{Cloning The Repository}
+The first stage to using git is to clone a repository to your local machine. To start off, navigate to the GitHub page of your repository and under the \verb|Code| menu, copy the repository's URL.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{assets/gitclone.png}
@@ -60,7 +75,7 @@ You can now navigate into the folder git will have created while cloning.\\
 
 Congratulations! You now have a local copy of the Git Repository on your computer, well done. Go pat yourself on your back! Next up is the fun of branches\dots
 
-\section{Part II: Working With Branches}
+\section{Working With Branches}
 When developing, we want to be able to isolate our different development strands into different `boxes'. This is done with \textit{Branch}. In essence, a branch is an offshoot of the current repository, where you can make changes (this could be adding a new feature or fixing a bug), then it can be \textit{merged} back to the main branch. The key thing to remember is that a branch is for a feature, not a person.\\
 
 In this example, I'm going to use a branch to add a few lines of text to the \verb|README.md| of my project. The first thing I will do is get a list of all branches currently on my local machine with the command \verb|git branch|:
@@ -90,7 +105,7 @@ This will give you an output:
 
 Great, now I can make changes to the local copy of my code and it will stay within my new branch and not effect the \verb|main| branch. Some editors will tell you which branch you are using, for example \textit{VS Code} displays it in the bottom left hand corner of the window.
 
-\section{Part III: Committing Changes}
+\section{Committing Changes}
 Once you've finished working on the code, or you have completed the fix / feature, or you have something working - it's time to commit the code. What this is doing is bundling all the changes you have just made into something called a \textit{commit}, these are stored and therefore mean versions of files can be tracked. This is why it's important to commit frequently, not just once at the end of the project!\\
 
 The first step is to \verb|add| all the changed files to the commit. You can examine what these will be using the \verb|git status| command. You will generally need to just add all files to the commit which can be achieved with the following command:
@@ -135,7 +150,7 @@ If you don't do this, git will moan at you and tell you to do it. From now on, w
 \end{verbatim}
 The length and content of the push message will vary depending on what you are pushing and where-to. As long as it's not screaming about something, you're fine.
 
-\section{Part IV: Merging Branches}
+\section{Merging Branches}
 This section is to be completed once you have finished the feature, fixed the bug or done whatever you deemed the branch to be used for. By the end of this section, the branch you have been using will no longer be in existence.\\
 
 We will be using the GitHub web application to merge our branches. It is possible to use the CLI, however this doesn't allow for Pull Requests which are fundamental parts of the code review process.\\
